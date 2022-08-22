@@ -89,13 +89,38 @@ Example:
 - - -
 </details>
 
-- - -
-</details>
 
 <details>
 <summary>monitoring.sh</summary>
+먼저 요구하는 출력을 살펴보자.
+  
+* The architecture of your operating system and its kernel version.
+* The number of physical processors.
+* The number of virtual processors.
+* The current available RAM on your server and its utilization rate as a percentage.
+* The current available memory on your server and its utilization rate as a percentage.
+* The current utilization rate of your processors as a percentage.
+* The date and time of the last reboot.
+* Whether LVM is active or not.
+* The number of active connections.
+* The number of users using the server.
+* The IPv4 address of your server and its MAC (Media Access Control) address.
+* The number of commands executed with the sudo program.
 
+아키텍쳐와 운영체제는 `uname -a`로 가져올 수 있다.
+cpu와 관련된 정보는 `lscpu`에서 확인할 수 있는데, physical processor는 이 항목의 Socket(s), virtual processor는 Socket(s) * Core(s) per socket이다.
+ (https://www.ibm.com/docs/en/power8?topic=processors-virtual)
+사용 가능한 메모리, 디스크와, 사용중인 메모리, 디스크는 각각 `free`와 `df`를 통해 확인할 수 있다.
+사용중인 cpu의 점유율은 `top`을 통해 확인할 수 있다.
+마지막 부팅 시간은 `who -b`를 통해 확인할 수 있다.
+파티션 정보는 `lsblk`를 이용해 볼 수 있는데, 여기서 LVM 파티션이 있는지 확인할 수 있다.
+ssh가 연결된 개수는 `ss`에서 확인해 볼 수 있다.
+서버를 사용중인 유저의 수는 `who`에서 확인할 수 있다.
+서버의 IPv4 주소는 `hostname -I`에서 볼 수 있으며, MAC주소는 `ifconfig`으로 확인할 수 있다. (apt install net-tools)
+sudo를 이용해 실행된 명령들은 `journalctl`의 로그를 통해 확인해 볼 수 있다.
+  
 
+이제 스크립트를 직접 작성해보자.
 - - -
 </details>
 
