@@ -1,5 +1,5 @@
 <details>
-<summary>UFW가 뭔가요?</summary>
+<summary>UFW 설정하기</summary>
 
 * The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. ufw provides a framework for managing netfilter, as well as a command-line interface for manipulating the firewall. ufw aims to provide an easy to use interface for people unfamiliar with firewall concepts, while at the same time simplifies complicated iptables commands to help an administrator who knows what he or she is doing. (https://wiki.ubuntu.com/UncomplicatedFirewall)
 * 요약하자면 방화벽에 익숙하지 않은 사람이더라도 방화벽을 쉽게 사용할 수 있도록 만들어진 것이 ufw라는 것이다.
@@ -24,6 +24,19 @@
 </details>
 
 <details>
+<summary>SSH 포트 설정하기</summary>
+ufw를 설정할 때, 4242 포트를 열었던 것을 기억할 것이다.
+그러나 ssh의 기본 포트는 22이므로, 4242로 접속할 수 있도록 바꿔줄 필요가 있다.
+
+`vi /etc/ssh/sshd_config` 으로 ssh 설정파일을 불러올 수 있다.
+열자마자 주석 처리된 포트 설정부분이 보이는데, 4242로 바꿔주자.
+<img width="432" alt="image" src="https://user-images.githubusercontent.com/67845112/185984825-aa0ff852-2482-43d2-b084-b4b84f6b08f1.png">
+
+- - -
+</details>
+
+
+<details>
 <summary>비밀번호 정책 만들기</summary>
 
 과제가 요구하는 정책은 다음과 같다.
@@ -44,7 +57,7 @@ at least 7 characters that are not part of the former password.
 `/etc/login.defs` 파일에서 PASS_MAX_DAYS, PASS_MIN_DAYS, PASS_WARN_AGE를 변경하면 된다.
 <img width="1052" alt="image" src="https://user-images.githubusercontent.com/67845112/185969315-a48ee903-04c2-4e51-a4ba-4b63b8fbc1fc.png">
 
-이 외의 설정을 하려면, 모듈 설치가 필요하다.
+이 외의 설정을 하려면, 별도의 모듈 설치가 필요하다.
 > apt install libpam-pwquality
 
 `etc/security/pwquality.conf`에서 설명에 따라 적절히 바꿔준다.
@@ -72,6 +85,16 @@ Example:
 적절히 참고해서 바꿔주자.
 
 <img width="1218" alt="image" src="https://user-images.githubusercontent.com/67845112/185983155-04de4c4e-261a-4a69-bd9e-122438b35caf.png">
+
+- - -
+</details>
+
+- - -
+</details>
+
+<details>
+<summary>monitoring.sh</summary>
+
 
 - - -
 </details>
