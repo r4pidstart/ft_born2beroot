@@ -1,6 +1,6 @@
 <details>
-    <summary>UFW가 뭔가요?</summary>
-  
+<summary>UFW가 뭔가요?</summary>
+
 * The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. ufw provides a framework for managing netfilter, as well as a command-line interface for manipulating the firewall. ufw aims to provide an easy to use interface for people unfamiliar with firewall concepts, while at the same time simplifies complicated iptables commands to help an administrator who knows what he or she is doing. (https://wiki.ubuntu.com/UncomplicatedFirewall)
 * 요약하자면 방화벽에 익숙하지 않은 사람이더라도 방화벽을 쉽게 사용할 수 있도록 만들어진 것이 ufw라는 것이다.
 
@@ -24,8 +24,8 @@
 </details>
 
 <details>
-    <summary>비밀번호 정책 만들기</summary>
-    
+<summary>비밀번호 정책 만들기</summary>
+
 과제가 요구하는 정책은 다음과 같다.
 
 * Your password has to expire every 30 days.
@@ -51,3 +51,28 @@ at least 7 characters that are not part of the former password.
 
 - - -
 </details>
+
+<details>
+<summary>sudo group 설정하기</summary>
+
+과제의 요구사항은 다음과 같다.
+
+* Authentication using sudo has to be limited to 3 attempts in the event of an incorrect password.
+* A custom message of your choice has to be displayed if an error due to a wrong
+password occurs when using sudo.
+* Each action using sudo has to be archived, both inputs and outputs. The log file
+has to be saved in the /var/log/sudo/ folder.
+* The TTY mode has to be enabled for security reasons.
+* For security reasons too, the paths that can be used by sudo must be restricted.
+Example:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+
+`visudo` 를 이용해 sudoers 파일을 수정할 수 있다.
+이 파일에서 sudo 설정을 할 수 있는데, `man sudoers`를 통해 옵션들을 살펴볼 수 있다.
+적절히 참고해서 바꿔주자.
+
+<img width="1218" alt="image" src="https://user-images.githubusercontent.com/67845112/185983155-04de4c4e-261a-4a69-bd9e-122438b35caf.png">
+
+- - -
+</details>
+
