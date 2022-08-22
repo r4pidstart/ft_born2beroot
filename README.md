@@ -92,7 +92,7 @@ Example:
 
 <details>
 <summary>monitoring.sh</summary>
-먼저 요구하는 출력을 살펴보자.
+먼저 과제에서 요구하는 출력을 살펴보자.
   
 * The architecture of your operating system and its kernel version.
 * The number of physical processors.
@@ -107,20 +107,75 @@ Example:
 * The IPv4 address of your server and its MAC (Media Access Control) address.
 * The number of commands executed with the sudo program.
 
-아키텍쳐와 운영체제는 `uname -a`로 가져올 수 있다.
-cpu와 관련된 정보는 `lscpu`에서 확인할 수 있는데, physical processor는 이 항목의 Socket(s), virtual processor는 Socket(s) * Core(s) per socket이다.
- (https://www.ibm.com/docs/en/power8?topic=processors-virtual)
-사용 가능한 메모리, 디스크와, 사용중인 메모리, 디스크는 각각 `free`와 `df`를 통해 확인할 수 있다.
-사용중인 cpu의 점유율은 `top`을 통해 확인할 수 있다.
-마지막 부팅 시간은 `who -b`를 통해 확인할 수 있다.
-파티션 정보는 `lsblk`를 이용해 볼 수 있는데, 여기서 LVM 파티션이 있는지 확인할 수 있다.
-ssh가 연결된 개수는 `ss`에서 확인해 볼 수 있다.
-서버를 사용중인 유저의 수는 `who`에서 확인할 수 있다.
-서버의 IPv4 주소는 `hostname -I`에서 볼 수 있으며, MAC주소는 `ifconfig`으로 확인할 수 있다. (apt install net-tools)
-sudo를 이용해 실행된 명령들은 `journalctl`의 로그를 통해 확인해 볼 수 있다.
   
-
+1. 아키텍쳐와 운영체제는 `uname -a`로 가져올 수 있다.
+2. cpu와 관련된 정보는 `lscpu`에서 확인할 수 있는데, physical processor는 이 항목의 Socket(s), virtual processor는 Socket(s) * Core(s) per socket이다.
+ (https://www.ibm.com/docs/en/power8?topic=processors-virtual)
+3. 사용 가능한 메모리, 디스크와, 사용중인 메모리, 디스크는 각각 `free`와 `df`를 통해 확인할 수 있다.
+4. 사용중인 cpu의 점유율은 `mpstat`을 통해 확인할 수 있다.
+5. 마지막 부팅 시간은 `who -b`를 통해 확인할 수 있다.
+6. 파티션 정보는 `lsblk`를 이용해 볼 수 있는데, 여기서 LVM 파티션이 있는지 확인할 수 있다.
+7. ssh가 연결된 개수는 `ss`에서 확인해 볼 수 있다.
+8. 서버를 사용중인 유저의 수는 `who`에서 확인할 수 있다.
+9. 서버의 IPv4 주소는 `hostname -I`에서 볼 수 있으며, MAC주소는 `ifconfig`으로 확인할 수 있다. (apt install net-tools)
+10. sudo를 이용해 실행된 명령들은 `journalctl`의 로그를 통해 확인해 볼 수 있다.
+  
 이제 스크립트를 직접 작성해보자.
+```bash
+#!/bin/bash
+
+echo -n "#Architecture : "
+uname -a
+
+echo -n "#CPU physical : "
+sockets=$(lscpu | grep Socket | awk '{print $2}')
+echo $sockets
+
+echo -n "#vCPU : "
+cores=$(lscpu | grep Core | awk '{print $4}')
+printf "%d" $(( $sockets * $cores ))
+echo
+
+echo -n "#Memory Usage: "
+free -m | grep Mem | awk '{printf "%d/%dMB (%.2f%%)", $3, $2, $3 * 100 / $2}'
+echo
+
+echo -n "#Disk Usage: "
+using_disk=$(df -mP | grep -v ^File | awk '{sum1 += $3} END {print sum1}')
+total_disk=$(( $(df -mP | grep -v ^File | awk '{sum2 += $4} END {print sum2}') + $using_disk ))
+printf "%d/%dMB (%d%%)\n" $using_disk $total_disk $(( $using_disk * 100 / $total_disk))
+
+echo -n "#CPU load: "
+mpstat | tail -1 | awk '{printf "%.2f", 100-$13}'
+echo "%"
+
+echo -n "#Last boot: "
+who -b | awk '{print $3 " " $4}'
+
+echo -n "#LVM use: "
+if [ $(lsblk | grep lvm | wc -l) == 0 ]
+then echo "no"
+else echo "yes"
+fi
+
+echo -n "#Connections TCP : "
+ss | grep tcp | wc -l | tr -d '\n'
+echo " ESTABLISHED"
+
+echo -n "#User log: "
+who | wc -l
+
+echo -n "#Network: IP "
+hostname -I | tr -d '\n'
+echo -n "("
+ifconfig | grep ether | awk '{print $2}' | tr -d '\n'
+echo ")"
+
+echo -n "#Sudo : "
+journalctl | grep USER=root | wc -l | tr -d '\n'
+echo " cmd"
+```
+ 
 - - -
 </details>
 
