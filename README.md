@@ -1,3 +1,18 @@
+### Mandatory 
+
+<details>
+<summary>AppArmor 확인하기</summary>
+
+* AppArmor is a Mandatory Access Control (MAC) system which is a kernel (LSM) enhancement to confine programs to a limited set of resources. AppArmor's security model is to bind access control attributes to programs rather than to users. AppArmor confinement is provided via profiles loaded into the kernel, typically on boot. (https://wiki.ubuntu.com/AppArmor)
+* 요약하자면 프로그램이 사용할 수 있는 자원을 제한할 수 있도록 도와주는 프로그램이다.
+* AppArmor profiles can be in one of two modes: enforcement and complain. Profiles loaded in enforcement mode will result in enforcement of the policy defined in the profile as well as reporting policy violation attempts (either via syslog or auditd). Profiles in complain mode will not enforce policy but instead report policy violation attempts.
+* enforcement 모드에서는 정책을 강요(강제)하고, 정책 위반 시도를 기록한다. complain 모드에서는 정책을 강요(강제)하지는 않지만, 정책 위반 시도는 기록한다.
+
+`aa-status` 명령으로 apparmor의 상태를 확인할 수 있다.
+
+- - -
+</details>
+
 <details>
 <summary>UFW 설정하기</summary>
 
@@ -25,6 +40,9 @@
 
 <details>
 <summary>SSH 포트 설정하기</summary>
+  
+* 시큐어 셸(Secure SHell, SSH)은 네트워크 상의 다른 컴퓨터에 로그인하거나 원격 시스템에서 명령을 실행하고 다른 시스템으로 파일을 복사할 수 있도록 해 주는 응용 프로그램 또는 그 프로토콜을 가리킨다. (https://ko.wikipedia.org/wiki/%EC%8B%9C%ED%81%90%EC%96%B4_%EC%85%B8)
+  
 ufw를 설정할 때, 4242 포트를 열었던 것을 기억할 것이다.
 그러나 ssh의 기본 포트는 22이므로, 4242로 접속할 수 있도록 바꿔줄 필요가 있다.
 
@@ -60,7 +78,7 @@ at least 7 characters that are not part of the former password.
 이 외의 설정을 하려면, 별도의 모듈 설치가 필요하다.
 > apt install libpam-pwquality
 
-`etc/security/pwquality.conf`에서 설명에 따라 적절히 바꿔준다.
+`/etc/security/pwquality.conf`에서 설명에 따라 적절히 바꿔준다.
 
 - - -
 </details>
@@ -91,7 +109,7 @@ Example:
 
 
 <details>
-<summary>monitoring.sh</summary>
+<summary>monitoring.sh 만들기</summary>
 먼저 과제에서 요구하는 출력을 살펴보자.
   
 * The architecture of your operating system and its kernel version.
@@ -188,3 +206,6 @@ echo " cmd"
 - - -
 </details>
 
+- - -
+
+### Bonus
