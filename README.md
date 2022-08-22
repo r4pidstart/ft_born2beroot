@@ -40,7 +40,28 @@
 
 <details>
 <summary>새 user를 만들고 group은 어떻게 등록하나</summary>
+  
+user를 만들거나 없애는 법은 간단하다.
+> useradd $(new username)
+  
+> userdel $(target username)
+ 
+user를 만들었으면, 비밀번호를 만들어주어야 한다. 해당 명령으로 비밀번호 변경도 가능하다.
+> passwd $(target username)
+ 
+`useradd` 명령만으로는 홈 디렉토리를 만들어주지 않기에 `-m` 옵션을 추가하여 같이 만들 수 있다.
+그렇지만 `adduser` 명령을 이용하면 유저를 생성함과 동시에 홈 디렉토리와 비밀번호를 같이 만들 수 있다.
+ 
+group 생성은 명령어 한 줄로 할 수 있다.
+> groupadd $(new groupname)
 
+누군가를 어떠한 그룹에 추가하고 싶으면 다음 명령을 사용한다
+> usermod -a $(groupname) $(username)
+
+`-a` 옵션은 append의 약자고, `-G` 옵션은 여러 그릅을 한 번에 추가할 수 있게 해주며, `-g` 옵션은 주어진 그룹을 유저의 primary 그룹으로 만들어준다.
+primary 그룹은 유저가 로그인 했을 때 주어지는 공간을 관장하며, 그 외의 secondary group들은 해당 그룹에 유저가 접근하여 읽고 쓸 수 있도록 해 준다.
+  
+각 사용자의 그룹은 `groups $(username)`으로 확인할 수 있다.
 
 - - -
 </details>
