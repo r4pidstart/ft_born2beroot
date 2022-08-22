@@ -1,3 +1,14 @@
+# Born2beRoot - This document is a System Administration related exercise.
+
+### This project aims to introduce you to the wonderful world of virtualization.
+You will create your first machine in VirtualBox (or UTM if you can’t use VirtualBox)
+under specific instructions. Then, at the end of this project, you will be able to set up
+your own operating system while implementing strict rules.
+
+*Version : 1*
+
+---
+
 ### Mandatory 
 
 <details>
@@ -311,3 +322,5 @@ virtualbox에서 포트포워딩을 하고나서, hostip/wordpress에 접속하�
 
 - - -
 </details>
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fr4pidstart%2Fft_born2beroot&count_bg=%23000000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
