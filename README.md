@@ -265,11 +265,19 @@ echo " cmd"
 Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world. (https://php.net/)
   
 wordpress가 php로 쓰여진 사이트 제작 도구이기에, php를 설치하고, lighttpd에서 사이트 서버를 돌리며, mariadb로 데이터를 관리하려는 것 같다.
-php-fpm은 서버와 프로그램을 연결해주는 CGI(Common Gateway Interface)의 일종이라고 한다.
+php-fpm은 서버와 프로그램을 연결해주는 CGI(Common Gateway Interface)의 일종이라고 한다. 빠른 cgi라는 의미로 fastcgi라고도 불리는 것 같다.
 
+일단 php-fpm을 이용해서 lighttpd와 프로그램을 연결할 수 있도록 몇 가지 설정이 필요하다.
+> vi /etc/php/$(php verson)/fpm/pool.d/www.conf
 
+<img width="450" alt="image" src="https://user-images.githubusercontent.com/67845112/186032900-fbc35e1f-e7c6-4582-88cd-2bee0550f63d.png">
 
-  
+> vi /etc/lighttpd/conf-available/15-fastcgi-php.conf
+<img width="610" alt="image" src="https://user-images.githubusercontent.com/67845112/186033084-cda1f210-f8c4-4b31-be1c-1dadc9798360.png">
+
+> lighty-enable-mod fastcgi </br> lighty-enable-mod fastcgi-php
+
+하라는대로 `service lighttpd force-reload`를 해 준다.
 
 - - -
 </details>
