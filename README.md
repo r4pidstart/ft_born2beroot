@@ -117,7 +117,7 @@ Example:
 6. 파티션 정보는 `lsblk`를 이용해 볼 수 있는데, 여기서 LVM 파티션이 있는지 확인할 수 있다.
 7. ssh가 연결된 개수는 `ss`에서 확인해 볼 수 있다.
 8. 서버를 사용중인 유저의 수는 `who`에서 확인할 수 있다.
-9. 서버의 IPv4 주소는 `hostname -I`에서 볼 수 있으며, MAC주소는 `ifconfig`으로 확인할 수 있다. (apt install net-tools)
+9. 서버의 IPv4 주소는 `hostname -I`에서 볼 수 있으며, MAC주소는 `ip link`로 확인할 수 있다.
 10. sudo를 이용해 실행된 명령들은 `journalctl`의 로그를 통해 확인해 볼 수 있다.
   
 이제 스크립트를 직접 작성해보자.
@@ -168,7 +168,8 @@ who | wc -l
 echo -n "#Network: IP "
 hostname -I | tr -d '\n'
 echo -n "("
-ifconfig | grep ether | awk '{print $2}' | tr -d '\n'
+# ifconfig | grep ether | awk '{print $2}' | tr -d '\n'
+ip link | grep link/ether | awk '{print $2}' | tr -d '\n'
 echo ")"
 
 echo -n "#Sudo : "
@@ -182,8 +183,8 @@ echo " cmd"
 
 <img width="583" alt="image" src="https://user-images.githubusercontent.com/67845112/186017040-ae694a6b-8b8b-401a-8d27-ff0e0bfc2d82.png">
   
-<img width="1053" alt="image" src="https://user-images.githubusercontent.com/67845112/186018281-9b6e1d8b-f2e7-42c7-9c29-0bb58e3ece8e.png">
- 
+<img width="1089" alt="image" src="https://user-images.githubusercontent.com/67845112/186019520-c78eeac8-e762-4d88-b49b-af3b8dfa91d0.png">
+  
 - - -
 </details>
 
