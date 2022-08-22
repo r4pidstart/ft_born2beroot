@@ -39,6 +39,29 @@
 </details>
 
 <details>
+<summary>새 user를 만들고 group은 어떻게 등록하나</summary>
+
+
+- - -
+</details>
+
+<details>
+<summary>hostname은 어떻게 바꾸나</summary>
+
+* 호스트명(hostname)은 네트워크에 연결된 장치(컴퓨터, 파일 서버, 복사기, 케이블 모뎀 등)들에게 부여되는 고유한 이름이다. https://ko.wikipedia.org/wiki/%ED%98%B8%EC%8A%A4%ED%8A%B8%EB%AA%85)
+  
+<img width="229" alt="image" src="https://user-images.githubusercontent.com/67845112/186026201-2154903d-ec0f-4cf9-9f06-c3834a45a9a7.png">
+로그인 하면, (user)@(hostname) 형식으로 된 문구를 볼 수 있다.
+
+hostname은 `hostnamectl set-hostname $(new hostname)` 으로 변경할 수 있다.
+변경 후 재시작하면 적용되며, `hostname` 명령으로 확인할 수도 있다.
+  
+<img width="362" alt="image" src="https://user-images.githubusercontent.com/67845112/186026514-01b75259-be72-4731-9465-2f5adbd99e6c.png">
+
+- - -
+</details>
+  
+<details>
 <summary>SSH 포트 설정하기</summary>
   
 * 시큐어 셸(Secure SHell, SSH)은 네트워크 상의 다른 컴퓨터에 로그인하거나 원격 시스템에서 명령을 실행하고 다른 시스템으로 파일을 복사할 수 있도록 해 주는 응용 프로그램 또는 그 프로토콜을 가리킨다. (https://ko.wikipedia.org/wiki/%EC%8B%9C%ED%81%90%EC%96%B4_%EC%85%B8)
@@ -84,7 +107,7 @@ at least 7 characters that are not part of the former password.
 </details>
 
 <details>
-<summary>sudo group 설정하기</summary>
+<summary>sudo 설정하기</summary>
 
 과제의 요구사항은 다음과 같다.
 
@@ -205,7 +228,5 @@ echo " cmd"
   
 - - -
 </details>
-
-- - -
 
 ### Bonus
