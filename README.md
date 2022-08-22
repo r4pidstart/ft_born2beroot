@@ -42,9 +42,7 @@
 <summary>새 user를 만들고 group은 어떻게 등록하나</summary>
   
 user를 만들거나 없애는 법은 간단하다.
-> useradd $(new username)
-  
-> userdel $(target username)
+> useradd $(new username </br> userdel $(target username)
  
 user를 만들었으면, 비밀번호를 만들어주어야 한다. 해당 명령으로 비밀번호 변경도 가능하다.
 > passwd $(target username)
@@ -251,3 +249,27 @@ echo " cmd"
 </details>
 
 ### Bonus
+
+<details>
+    <summary>wordpress를 구축해보자</summary>
+  
+* Set up a functional WordPress website with the following services: lighttpd, MariaDB, and PHP.
+
+일단 과제에서 요구하는 서비스들을 모두 설치해주자.
+  
+> apt install lighttpd mariadb* php php-fpm
+  
+* lighttpd (pronounced /lighty/) is a secure, fast, compliant, and very flexible web server that has been optimized for high-performance environments. (https://www.lighttpd.net/)
+* MariaDB Server is one of the most popular open source relational databases. It’s made by the original developers of MySQL and guaranteed to stay open source. (https://mariadb.org/)
+* A popular general-purpose scripting language that is especially suited to web development.
+Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world. (https://php.net/)
+  
+wordpress가 php로 쓰여진 사이트 제작 도구이기에, php를 설치하고, lighttpd에서 사이트 서버를 돌리며, mariadb로 데이터를 관리하려는 것 같다.
+php-fpm은 서버와 프로그램을 연결해주는 CGI(Common Gateway Interface)의 일종이라고 한다.
+
+
+
+  
+
+- - -
+</details>
