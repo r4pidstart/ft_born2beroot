@@ -257,7 +257,7 @@ echo " cmd"
 
 일단 과제에서 요구하는 서비스들을 모두 설치해주자.
   
-> apt install lighttpd mariadb* php php-fpm
+> apt install lighttpd mariadb* php php-fpm php-mysql
   
 * lighttpd (pronounced /lighty/) is a secure, fast, compliant, and very flexible web server that has been optimized for high-performance environments. (https://www.lighttpd.net/)
 * MariaDB Server is one of the most popular open source relational databases. It’s made by the original developers of MySQL and guaranteed to stay open source. (https://mariadb.org/)
@@ -278,6 +278,36 @@ php-fpm은 서버와 프로그램을 연결해주는 CGI(Common Gateway Interfac
 > lighty-enable-mod fastcgi </br> lighty-enable-mod fastcgi-php
 
 하라는대로 `service lighttpd force-reload`를 해 준다.
+
+이제 데이터베이스를 설정해보자.
+`mysql` 을 통해 mariadb에 로그인 할 수 있다.
+
+> CREATE DATABASE wpdb; </br> GRANT ALL PRIVILEGES on wpdb.* TO 'wpuser'@'localhost' IDENTIFIED BY 'password'; </br> FLUSH PRIVILEGES;
+</br> EXIT;
+
+워드프레스에 사용할 데이터베이스를 생성하고, 권한을 부여했다.
+
+워드프레스를 설치할 모든 준비가 끝났다.
+
+> cd /var/www/html </br> wget https://wordpress.org/latest.tar.gz </br> tar -xvzf latest.tar.gz </br> cd wordpress </br> mv wp_config-sample.php wp-config.php </br> vi wp-config.php
+
+리눅스의 웹 기본 폴더인 `/var/ww/html`로 가서, 워드프레스를 다운받는다.
+
+원하는 설정을 하기 위해, 주어진 샘플파일을 이용할거다.
+
+<img width="963" alt="image" src="https://user-images.githubusercontent.com/67845112/186035763-5192b660-03aa-4887-96a7-424106b099f0.png">
+
+만들어뒀던 데이터베이스를 이용한다.
+
+lighttpd의 설정을 따로 건드리지 않았으므로, 포트는 그대로 80을 이용한다.
+> ufw allow 80
+
+virtualbox에서 포트포워딩을 하고나서, hostip/wordpress에 접속하면 반가운 화면을 볼 수 있다.
+<img width="618" alt="image" src="https://user-images.githubusercontent.com/67845112/186038841-84ee99cc-52f6-459c-9668-7daf4fb5d888.png">
+
+<img width="1819" alt="image" src="https://user-images.githubusercontent.com/67845112/186038955-b6e991bc-8cd3-4318-8fc3-80c87b73e246.png">
+
+
 
 - - -
 </details>
