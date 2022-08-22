@@ -175,6 +175,14 @@ echo -n "#Sudo : "
 journalctl | grep USER=root | wc -l | tr -d '\n'
 echo " cmd"
 ```
+  
+이제 작성한 스크립트를 매 10분마다 실행되도록 설정해야 한다.
+특정 시간마다 프로그램이 실행되도록 도와주는 `cron`을 활용할 것이다.
+`crontab -e`를 통해 설정파일에 들어가서, 양식에 맞게 입력한다.
+
+<img width="583" alt="image" src="https://user-images.githubusercontent.com/67845112/186017040-ae694a6b-8b8b-401a-8d27-ff0e0bfc2d82.png">
+  
+<img width="1053" alt="image" src="https://user-images.githubusercontent.com/67845112/186018281-9b6e1d8b-f2e7-42c7-9c29-0bb58e3ece8e.png">
  
 - - -
 </details>
