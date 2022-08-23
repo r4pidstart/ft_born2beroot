@@ -65,7 +65,7 @@ group 생성은 명령어 한 줄로 할 수 있다.
 > groupadd $(new groupname)
 
 누군가를 어떠한 그룹에 추가하고 싶으면 다음 명령을 사용한다
-> usermod -a $(groupname) $(username)
+> usermod -aG $(groupname) $(username)
 
 `-a` 옵션은 append의 약자고, `-G` 옵션은 여러 그릅을 한 번에 추가할 수 있게 해주며, `-g` 옵션은 주어진 그룹을 유저의 primary 그룹으로 만들어준다.
 primary 그룹은 유저가 로그인 했을 때 주어지는 공간을 관장하며, 그 외의 secondary group들은 해당 그룹에 유저가 접근하여 읽고 쓸 수 있도록 해 준다.
@@ -158,6 +158,7 @@ Example:
 
 <img width="1218" alt="image" src="https://user-images.githubusercontent.com/67845112/185983155-04de4c4e-261a-4a69-bd9e-122438b35caf.png">
 
+로그파일을 살펴보다보면, stdin/out, ttyin/out 파일이 꺠져보이는 문제가 있는데, `gzip -d`를 이용해서 정상적으로 볼 수 있다.
 - - -
 </details>
 
@@ -269,7 +270,7 @@ echo " cmd"
 
 일단 과제에서 요구하는 서비스들을 모두 설치해주자.
   
-> apt install lighttpd mariadb* php php-fpm php-mysql
+> apt install lighttpd mariadb-server php php-fpm php-mysql
   
 * lighttpd (pronounced /lighty/) is a secure, fast, compliant, and very flexible web server that has been optimized for high-performance environments. (https://www.lighttpd.net/)
 * MariaDB Server is one of the most popular open source relational databases. It’s made by the original developers of MySQL and guaranteed to stay open source. (https://mariadb.org/)
