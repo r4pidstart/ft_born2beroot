@@ -101,6 +101,7 @@ ufw를 설정할 때, 4242 포트를 열었던 것을 기억할 것이다.
 
 `vi /etc/ssh/sshd_config` 으로 ssh 설정파일을 불러올 수 있다.
 열자마자 주석 처리된 포트 설정부분이 보이는데, 4242로 바꿔주자.
+
 <img width="432" alt="image" src="https://user-images.githubusercontent.com/67845112/185984825-aa0ff852-2482-43d2-b084-b4b84f6b08f1.png">
 
 - - -
@@ -183,7 +184,7 @@ Example:
 2. cpu와 관련된 정보는 `lscpu`에서 확인할 수 있는데, physical processor는 이 항목의 Socket(s), virtual processor는 Socket(s) * Core(s) per socket이다.
  (https://www.ibm.com/docs/en/power8?topic=processors-virtual)
 3. 사용 가능한 메모리, 디스크와, 사용중인 메모리, 디스크는 각각 `free`와 `df`를 통해 확인할 수 있다.
-4. 사용중인 cpu의 점유율은 `mpstat`을 통해 확인할 수 있다.
+4. 사용중인 cpu의 점유율은 `mpstat`을 통해 확인할 수 있다. (sysstat)
 5. 마지막 부팅 시간은 `who -b`를 통해 확인할 수 있다.
 6. 파티션 정보는 `lsblk`를 이용해 볼 수 있는데, 여기서 LVM 파티션이 있는지 확인할 수 있다.
 7. ssh가 연결된 개수는 `ss`에서 확인해 볼 수 있다.
