@@ -129,6 +129,10 @@ at least 7 characters that are not part of the former password.
 `/etc/login.defs` 파일에서 PASS_MAX_DAYS, PASS_MIN_DAYS, PASS_WARN_AGE를 변경하면 된다.
 <img width="1052" alt="image" src="https://user-images.githubusercontent.com/67845112/185969315-a48ee903-04c2-4e51-a4ba-4b63b8fbc1fc.png">
 
+그러나, `/etc/login.defs`를 수정했을 때는, 기존의 유저들에게는 해당 설정이 적용되지 않는다.
+이 문제는 `chage` 명령을 이용해 수동으로 적용함으로써 해결할 수 있다. 
+>  chage -m 2 -M 30 -W 7 $(username)
+
 이 외의 설정을 하려면, 별도의 모듈 설치가 필요하다.
 > apt install libpam-pwquality
 
