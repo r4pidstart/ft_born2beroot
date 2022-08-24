@@ -302,7 +302,7 @@ php-fpm은 서버와 프로그램을 연결해주는 CGI(Common Gateway Interfac
 이제 데이터베이스를 설정해보자.
 `mysql` 을 통해 mariadb에 로그인 할 수 있다.
 
-> CREATE DATABASE wpdb; </br> GRANT ALL PRIVILEGES on wpdb.* TO 'wpuser'@'localhost' IDENTIFIED BY 'password'; </br> FLUSH PRIVILEGES;
+> CREATE DATABASE dbname; </br> GRANT ALL PRIVILEGES on dbname.* TO 'username'@'localhost' IDENTIFIED BY 'password'; </br> FLUSH PRIVILEGES;
 </br> EXIT;
 
 워드프레스에 사용할 데이터베이스를 생성하고, 권한을 부여했다.
