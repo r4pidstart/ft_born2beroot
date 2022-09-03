@@ -309,7 +309,7 @@ php-fpm은 서버와 프로그램을 연결해주는 CGI(Common Gateway Interfac
 
 워드프레스를 설치할 모든 준비가 끝났다.
 
-> cd /var/www/html </br> wget https://wordpress.org/latest.tar.gz </br> tar -xvzf latest.tar.gz </br> cd wordpress </br> mv wp_config-sample.php wp-config.php </br> vi wp-config.php
+> cd /var/www/html </br> wget https://wordpress.org/latest.tar.gz </br> tar -xvzf latest.tar.gz </br> cd wordpress </br> mv wp-config-sample.php wp-config.php </br> vi wp-config.php
 
 리눅스의 웹 기본 폴더인 `/var/ww/html`로 가서, 워드프레스를 다운받는다.
 
